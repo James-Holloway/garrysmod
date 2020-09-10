@@ -5,7 +5,7 @@ var DigestUpdate = 0;
 var ServerTypes = {};
 var FirstTime = true;
 
-function ControllerServers( $scope, $element, $rootScope, $location )
+RegisterController("ControllerServers", function( $scope, $element, $rootScope, $location )
 {
 	Scope = $rootScope;
 	Scope.ShowTab = 'internet';
@@ -206,7 +206,7 @@ function ControllerServers( $scope, $element, $rootScope, $location )
 		FirstTime = false;
 		$scope.SwitchType( 'internet' );
 	}
-}
+});
 
 function FinishedServeres( type )
 {

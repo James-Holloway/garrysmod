@@ -2,10 +2,14 @@
 var IN_ENGINE = navigator.userAgent.indexOf( "Valve Source Client" ) != -1;
 var IS_SPAWN_MENU = false
 
-var App = angular.module( 'MenuApp', [ 'tranny', 'ui' ] );
+var App = angular.module( 'MenuApp', [ 'ngRoute', 'tranny', 'ui' ] );
 
-App.config(function ( $routeProvider, $locationProvider )
+App.config(function ( $routeProvider, $locationProvider, $controllerProvider, $compileProvider )
 {
+	$locationProvider.hashPrefix('');
+	$compileProvider.aHrefSanitizationWhitelist( /^\s*(https?|s?ftp|mailto|tel|file|asset):/ );
+	$compileProvider.imgSrcSanitizationWhitelist( /^\s*((https?|ftp|file|blob|asset):|data:image\/)/ );
+	
 	$routeProvider.when('/', { templateUrl: 'template/main.html' } );
 	$routeProvider.when('/addons/', { templateUrl: 'template/addon_list.html' } );
 	$routeProvider.when('/newgame/', { templateUrl: 'template/newgame.html' } );
@@ -57,3 +61,8 @@ App.filter( 'startFrom', function ()
 		return input.slice( start );
 	}
 } );
+
+function RegisterController(controllerName, constructorFunction)
+{
+	return App.controller(controllerName, constructorFunction);
+}

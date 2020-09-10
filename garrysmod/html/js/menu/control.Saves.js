@@ -1,7 +1,7 @@
 
 save = new WorkshopFiles();
 
-function ControllerSaves($scope, $rootScope, $location, $timeout, $routeParams)
+RegisterController("ControllerSaves", function($scope, $rootScope, $location, $timeout, $routeParams)
 {
 	$rootScope.ShowBack = true;
 	Scope = $scope;
@@ -99,7 +99,7 @@ function ControllerSaves($scope, $rootScope, $location, $timeout, $routeParams)
 		$scope.ReloadedView = true;
 		$scope.ResizeTimeout = $timeout( function() { $scope.ReloadView(); }, 250 );
 	} );
-}
+});
 
 function OnGameSaved()
 {

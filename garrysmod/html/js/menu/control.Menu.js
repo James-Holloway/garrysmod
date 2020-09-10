@@ -12,7 +12,7 @@ var MapIndex = {}
 
 var subscriptions = new Subscriptions();
 
-function MenuController( $scope, $rootScope )
+RegisterController("MenuController", function( $scope, $rootScope, $route, $window)
 {
 	$rootScope.ShowBack = false;
 	$scope.Version = "0";
@@ -180,7 +180,7 @@ function MenuController( $scope, $rootScope )
 	util.MotionSensorAvailable( function( available ) {
 		$scope.kinect.available = available;
 	} );
-}
+});
 
 function SetInGame( bool )
 {

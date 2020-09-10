@@ -2,7 +2,7 @@
 var scope = null
 var rootScope = null;
 
-function ControllerMain( $scope, $element, $rootScope )
+RegisterController("ControllerMain", function( $scope, $element, $rootScope)
 {
 	$rootScope.ShowBack = false;
 
@@ -44,10 +44,11 @@ function ControllerMain( $scope, $element, $rootScope )
 	{
 		lua.Run( "gui.OpenURL( '" + url + "' )" );
 	}
-}
+});
 
 function UpdateNewsList( newslist )
 {
+	if (scope == null) { return; }
 	scope.NewsList = newslist;
 	scope.CurrentNewsItem = newslist[ 0 ];
 

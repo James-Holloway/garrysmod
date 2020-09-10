@@ -3,7 +3,7 @@ var ServerSettings = []
 var scope = null;
 var rootScope = null;
 
-function ControllerNewGame( $scope, $element, $rootScope, $location, $filter )
+RegisterController("ControllerNewGame", function( $scope, $element, $rootScope, $location, $filter )
 {
 	for ( var i = 0; i < gScope.MapList.length; i++ )
 	{
@@ -242,7 +242,7 @@ function ControllerNewGame( $scope, $element, $rootScope, $location, $filter )
 			document.getElementById( "p2p_friendsonly" ).disabled = false;
 		}
 	}
-}
+});
 
 function SetLastMap( map, category )
 {

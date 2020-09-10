@@ -1,7 +1,7 @@
 
 demo = new WorkshopFiles();
 
-function ControllerDemos( $scope, $element, $rootScope, $location )
+RegisterController("ControllerDemos", function( $scope, $element, $rootScope, $location )
 {
 	$rootScope.ShowBack = true;
 	Scope = $scope;
@@ -69,4 +69,4 @@ function ControllerDemos( $scope, $element, $rootScope, $location )
 	}
 
 	$scope.Switch( 'local', 0 );
-}
+});

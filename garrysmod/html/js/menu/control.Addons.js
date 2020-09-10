@@ -1,7 +1,7 @@
 
 addon = new WorkshopFiles();
 
-function ControllerAddons( $scope, $element, $rootScope, $location )
+RegisterController("ControllerAddons", function( $scope, $element, $rootScope, $location )
 {
 	$rootScope.ShowBack = true;
 	Scope = $scope;
@@ -152,7 +152,7 @@ function ControllerAddons( $scope, $element, $rootScope, $location )
 		}
 		return false;
 	}
-}
+});
 
 function UpdateAddonDisabledState( noaddons, noworkshop )
 {

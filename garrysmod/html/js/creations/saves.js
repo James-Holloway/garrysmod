@@ -1,8 +1,12 @@
 
-App = angular.module( 'CSavesApp', [ 'tranny' ] );
+App = angular.module( 'CSavesApp', [ 'ngRoute', 'tranny' ] );
 
-App.config( function ( $routeProvider, $locationProvider )
+App.config( function ( $routeProvider, $locationProvider, $compileProvider )
 {
+	$locationProvider.hashPrefix('');
+	$compileProvider.aHrefSanitizationWhitelist( /^\s*(https?|s?ftp|mailto|tel|file|asset):/ );
+	$compileProvider.imgSrcSanitizationWhitelist( /^\s*((https?|ftp|file|blob|asset):|data:image\/)/ );
+	
 	$routeProvider.when( '/', { templateUrl: 'template/creations/saves.html' } );
 	$routeProvider.when( '/list/:Category/:Tag/', { templateUrl: 'template/creations/saves.html' } );
 } );
@@ -10,7 +14,7 @@ App.config( function ( $routeProvider, $locationProvider )
 var CreationScope		= null;
 var CreationLocation	= null;
 
-function CSaves( $scope, $timeout, $location )
+App.controller("CSaves", function( $scope, $timeout, $location )
 {
 	CreationScope		= $scope;
 	CreationLocation	= $location;
@@ -69,7 +73,7 @@ function CSaves( $scope, $timeout, $location )
 	}
 
 	SetMap( 'gm_construct' );
-}
+});
 
 //
 // Sets the current map - so we get the right saves

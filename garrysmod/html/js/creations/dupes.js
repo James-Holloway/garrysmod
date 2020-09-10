@@ -1,8 +1,13 @@
 
-App = angular.module( 'CDupesApp', [ 'tranny' ] );
+App = angular.module( 'CDupesApp', [ 'ngRoute', 'tranny' ] );
 
-App.config( function ( $routeProvider, $locationProvider )
+App.config( function ( $routeProvider, $locationProvider, $compileProvider )
 {
+	$locationProvider.hashPrefix('');
+	
+	$compileProvider.aHrefSanitizationWhitelist( /^\s*(https?|s?ftp|mailto|tel|file|asset):/ );
+	$compileProvider.imgSrcSanitizationWhitelist( /^\s*((https?|ftp|file|blob|asset):|data:image\/)/ );
+	
 	$routeProvider.when( '/', { templateUrl: 'template/creations/dupes.html' } );
 	$routeProvider.when( '/list/:Category/:Tag/', { templateUrl: 'template/creations/dupes.html' } );
 } );
@@ -10,7 +15,7 @@ App.config( function ( $routeProvider, $locationProvider )
 var CreationScope		= null;
 var CreationLocation	= null;
 
-function CDupes( $scope, $timeout, $location )
+App.controller("CDupes", function( $scope, $timeout, $location )
 {
 	CreationScope		= $scope;
 	CreationLocation	= $location;
@@ -64,7 +69,7 @@ function CDupes( $scope, $timeout, $location )
 		$scope.DupeDisabled = "disabled";
 		if ( IN_ENGINE ) gmod.SaveDupe();
 	}
-}
+});
 
 //
 // Enable the dupe save button
